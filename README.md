@@ -8,7 +8,8 @@
 |------|---------|
 | Windows | [EngMathCalc-windows.zip](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-windows.zip) |
 | macOS (Apple Silicon / M 系列) | [EngMathCalc-macos-apple-silicon.dmg](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-macos-apple-silicon.dmg) |
-| macOS (Intel) | [EngMathCalc-macos-intel.dmg](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-macos-intel.dmg) |
+
+> **Intel Mac 使用者**: 下載 Apple Silicon 版本即可，macOS 會透過 Rosetta 2 自動轉譯執行。
 
 > 前往 [Releases 頁面](https://github.com/scorpio-rest/engineering-math-calculator/releases) 查看所有版本。
 

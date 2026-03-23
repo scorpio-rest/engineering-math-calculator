@@ -33,33 +33,7 @@ jobs:
           name: windows-build
           path: EngMathCalc-windows.zip
 
-  build-macos-intel:
-    runs-on: macos-13
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Build with PyInstaller
-        run: pyinstaller eng_math_calc.spec
-
-      - name: Create DMG
-        run: |
-          hdiutil create -volname "EngMathCalc" -srcfolder dist/ -ov -format UDZO "EngMathCalc-macos-intel.dmg"
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-intel-build
-          path: EngMathCalc-macos-intel.dmg
-
-  build-macos-apple-silicon:
+  build-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -82,11 +56,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: macos-apple-silicon-build
+          name: macos-build
           path: EngMathCalc-macos-apple-silicon.dmg
 
   release:
-    needs: [build-windows, build-macos-intel, build-macos-apple-silicon]
+    needs: [build-windows, build-macos]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
@@ -101,6 +75,5 @@ jobs:
           name: "工程數學計算機 ${{ github.ref_name }}"
           files: |
             windows-build/EngMathCalc-windows.zip
-            macos-intel-build/EngMathCalc-macos-intel.dmg
-            macos-apple-silicon-build/EngMathCalc-macos-apple-silicon.dmg
+            macos-build/EngMathCalc-macos-apple-silicon.dmg
           generate_release_notes: true
