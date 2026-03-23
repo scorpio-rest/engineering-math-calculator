@@ -24,14 +24,14 @@ jobs:
         run: pyinstaller eng_math_calc.spec
 
       - name: Create ZIP
-        run: Compress-Archive -Path "dist/工程數學計算機/*" -DestinationPath "工程數學計算機-windows.zip"
+        run: Compress-Archive -Path "dist/*" -DestinationPath "EngMathCalc-windows.zip"
         shell: pwsh
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: 工程數學計算機-windows.zip
+          path: EngMathCalc-windows.zip
 
   build-macos:
     runs-on: macos-latest
@@ -51,13 +51,13 @@ jobs:
 
       - name: Create DMG
         run: |
-          hdiutil create -volname "工程數學計算機" -srcfolder "dist/工程數學計算機.app" -ov -format UDZO "工程數學計算機-macos.dmg"
+          hdiutil create -volname "EngMathCalc" -srcfolder dist/ -ov -format UDZO "EngMathCalc-macos.dmg"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-build
-          path: 工程數學計算機-macos.dmg
+          path: EngMathCalc-macos.dmg
 
   release:
     needs: [build-windows, build-macos]
@@ -72,7 +72,8 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          name: "工程數學計算機 ${{ github.ref_name }}"
           files: |
-            windows-build/工程數學計算機-windows.zip
-            macos-build/工程數學計算機-macos.dmg
+            windows-build/EngMathCalc-windows.zip
+            macos-build/EngMathCalc-macos.dmg
           generate_release_notes: true
