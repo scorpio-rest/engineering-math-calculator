@@ -6,8 +6,9 @@
 
 | 平台 | 下載連結 |
 |------|---------|
-| Windows (.zip) | [EngMathCalc-windows.zip](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-windows.zip) |
-| macOS (.dmg) | [EngMathCalc-macos.dmg](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-macos.dmg) |
+| Windows | [EngMathCalc-windows.zip](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-windows.zip) |
+| macOS (Apple Silicon / M 系列) | [EngMathCalc-macos-apple-silicon.dmg](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-macos-apple-silicon.dmg) |
+| macOS (Intel) | [EngMathCalc-macos-intel.dmg](https://github.com/scorpio-rest/engineering-math-calculator/releases/latest/download/EngMathCalc-macos-intel.dmg) |
 
 > 前往 [Releases 頁面](https://github.com/scorpio-rest/engineering-math-calculator/releases) 查看所有版本。
 

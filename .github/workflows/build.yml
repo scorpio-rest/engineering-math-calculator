@@ -34,7 +34,14 @@ jobs:
           path: EngMathCalc-windows.zip
 
   build-macos:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - runner: macos-13
+            arch: intel
+          - runner: macos-latest
+            arch: apple-silicon
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
 
@@ -51,13 +58,13 @@ jobs:
 
       - name: Create DMG
         run: |
-          hdiutil create -volname "EngMathCalc" -srcfolder dist/ -ov -format UDZO "EngMathCalc-macos.dmg"
+          hdiutil create -volname "EngMathCalc" -srcfolder dist/ -ov -format UDZO "EngMathCalc-macos-${{ matrix.arch }}.dmg"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: macos-build
-          path: EngMathCalc-macos.dmg
+          name: macos-${{ matrix.arch }}-build
+          path: EngMathCalc-macos-${{ matrix.arch }}.dmg
 
   release:
     needs: [build-windows, build-macos]
@@ -75,5 +82,6 @@ jobs:
           name: "工程數學計算機 ${{ github.ref_name }}"
           files: |
             windows-build/EngMathCalc-windows.zip
-            macos-build/EngMathCalc-macos.dmg
+            macos-intel-build/EngMathCalc-macos-intel.dmg
+            macos-apple-silicon-build/EngMathCalc-macos-apple-silicon.dmg
           generate_release_notes: true
